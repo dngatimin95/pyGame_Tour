@@ -1,5 +1,4 @@
-# Based on "How To implement Snake Game in Python?" tutorial by Wajiha Urooj,
-# with several minor changes to annoy the heck out of players
+# Still WIP
 
 import pygame
 import time

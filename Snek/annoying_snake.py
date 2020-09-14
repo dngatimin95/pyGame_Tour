@@ -1,5 +1,4 @@
-# Based on "How To implement Snake Game in Python?" tutorial by Wajiha Urooj,
-# with several minor changes to annoy the heck out of players
+# I'm sorry for this game
 
 import pygame
 import time
@@ -13,12 +12,9 @@ red = (247, 52, 52)
 green = (135, 224, 121)
 blue = (74, 127, 212)
 
-width = 1000
-height = 800
-
-dis = pygame.display.set_mode((width,height))
+width, height = 1000, 800
+win = pygame.display.set_mode((width,height))
 pygame.display.set_caption("Now Playing: Snake Game")
-
 size = 10
 
 clock = pygame.time.Clock()
@@ -27,26 +23,25 @@ score_font = pygame.font.SysFont("bahnschrift", 40)
 
 def final_score(score):
     value = score_font.render("Your Score: " + str(score), True, black)
-    dis.blit(value, [0, 0])
+    win.blit(value, [0, 0])
 
 def snake_draw(size, snake_list):
     for x in snake_list:
-        pygame.draw.rect(dis, black, [x[0], x[1], size, size])
+        pygame.draw.rect(win, black, [x[0], x[1], size, size])
 
 def message(msg, color):
     mesg = font_style.render(msg, True, color)
-    dis.blit(mesg, [width//5, height//3])
+    win.blit(mesg, [width//5, height//3])
 
 def second_message(msg, color):
     mesg = font_style.render(msg, True, color)
-    dis.blit(mesg, [(width//5)+50, (height//3)-50])
+    win.blit(mesg, [(width//5)+100, (height//3)-50])
 
 def game_loop():
     max_score = 0
     game_over = False
     game_close = False
     changed = False
-
 
     x1 = width/2
     y1 = height/2
@@ -64,7 +59,7 @@ def game_loop():
     while not game_over:
         while game_close == True:
             max_score = max(max_score, snake_len - 1)
-            dis.fill(white)
+            win.fill(white)
             message("You Lost! Press Q to Quit or P to Play Again", red)
             second_message("Highest Score: " + str(max_score), red)
             final_score(snake_len - 1)
@@ -111,8 +106,8 @@ def game_loop():
         x1 += x1_change
         y1 += y1_change
 
-        dis.fill(white)
-        pygame.draw.rect(dis, green, [foodx, foody, size, size])
+        win.fill(white)
+        pygame.draw.rect(win, green, [foodx, foody, size, size])
         snake_Head = []
         snake_Head.append(x1)
         snake_Head.append(y1)
@@ -133,6 +128,10 @@ def game_loop():
             foodx = round(random.randint(1, width - size) // 10) * 10
             foody = round(random.randint(1, height - size) // 10) * 10
             changed = True
+
+        # If i'm truly evil then comment the if statement above and uncomment below
+        #foodx = round(random.randint(1, width - size) // 10) * 10
+        #foody = round(random.randint(1, height - size) // 10) * 10
 
         if x1 == foodx and y1 == foody:
             foodx = round(random.randint(1, width - size) // 10) * 10
