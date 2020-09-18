@@ -1,5 +1,4 @@
-# Based on Tech with Tim tutorial with minor changes
-
+from random_word import RandomWords
 import pygame
 import random
 import math
@@ -16,6 +15,7 @@ letters = []
 startx = round((width - (radius * 2 + gap) * 13) / 2)
 starty = 400
 A = 65
+randWord = RandomWords()
 
 for i in range(26):
     x = startx + (gap * 2) + ((radius * 2 + gap) * (i % 13))
@@ -32,8 +32,8 @@ for i in range(7):
     images.append(image)
 
 hangman_status = 0
-words = ["PYTHON", "JAVA", "PYGAME", "DEVELOPER", "HANGMAN" ]
-word = random.choice(words)
+word = randWord.get_random_word().upper()
+print(word)
 guessed = []
 
 white = (255, 255, 255)
@@ -42,7 +42,7 @@ black = (0, 0, 0)
 def draw():
     win.fill(white)
     text = title_font.render("Hangman", 1, black)
-    win.blit(text, (width/2 - text.get_width()/2, 20))
+    win.blit(text, (width//2 - text.get_width()//2, 20))
 
     display_word = ""
     for letter in word:
@@ -58,7 +58,7 @@ def draw():
         if vis:
             pygame.draw.circle(win, black, (x,y), radius, 3)
             text = letter_font.render(ltr, 1, black)
-            win.blit(text, (x - text.get_width()/2,y - text.get_height()/2))
+            win.blit(text, (x - text.get_width()//2,y - text.get_height()//2))
 
     win.blit(images[hangman_status], (150, 100))
     pygame.display.update()
@@ -67,7 +67,7 @@ def display_msg(message):
     pygame.time.delay(500)
     win.fill(white)
     text = word_font.render(message, 1, black)
-    win.blit(text, (width/2 - text.get_width()/2, height/2 - text.get_height()/2))
+    win.blit(text, (width/2 - text.get_width()//2, height//2 - text.get_height()//2))
     pygame.display.update()
     pygame.time.delay(2000)
 
@@ -104,10 +104,10 @@ def main():
                 break
 
         if won:
-            display_msg("You Won!")
+            display_msg("Congratulations! You won!")
             break
         if hangman_status == 6:
-            display_msg("You Lost!")
+            display_msg("Aww man, you Lost!")
             break
 
 main()
