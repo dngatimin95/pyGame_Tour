@@ -1,3 +1,5 @@
+# Based on Tech with Tim's turorial, but slightly modified
+
 from random_word import RandomWords
 import pygame
 import random
@@ -33,7 +35,6 @@ for i in range(7):
 
 hangman_status = 0
 word = randWord.get_random_word().upper()
-print(word)
 guessed = []
 
 white = (255, 255, 255)
