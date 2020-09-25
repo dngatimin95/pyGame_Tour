@@ -1,3 +1,3 @@
-# pyGame-Tour
+# pyGame Tour
 
 Snek still WIP
