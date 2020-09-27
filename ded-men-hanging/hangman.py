@@ -1,4 +1,4 @@
-# Based on Tech with Tim's turorial, but slightly modified
+# Based on Tech with Tim's tutorial, but slightly modified
 
 from random_word import RandomWords
 import pygame
